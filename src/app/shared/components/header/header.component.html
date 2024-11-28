@@ -1,0 +1,26 @@
+<div class="header-bg" [class]="pokemonData.state.pokemon()?.gradient || 'default-gradient'">
+  <app-navbar></app-navbar>
+
+  <div class="position-relative">
+    <img
+      class="pokeball-start"
+      src="./images/pokeball.svg"
+      alt="Pokeball"
+    />
+    <img
+      class="pokeball-end"
+      src="./images/pokeball.svg"
+      alt="Pokeball"
+    />
+
+    <div class="container d-flex justify-content-center align-items-center header-card-container">
+      @if (pokemonData.state.loadedAndNoError()) {
+        <app-header-card [pokemon]="pokemonData.state.pokemon()!"></app-header-card>
+      } @else if (pokemonData.state.loading()) {
+        <app-loading></app-loading>
+      }
+    </div>
+  </div>
+
+  <img class="waves w-100" src="./images/waves.svg" alt="Waves" />
+</div>

@@ -1,0 +1,28 @@
+.header-bg {
+  position: relative;
+  height: 550px;
+}
+
+.waves {
+  position: absolute;
+  bottom: 0;
+}
+
+.pokeball-start {
+  position: absolute;
+  height: 15vw;
+  left: 0;
+  transform: rotate(180deg);
+  top: calc(50% - 15vw / 2);
+}
+
+.pokeball-end {
+  position: absolute;
+  height: 15vw;
+  right: 0;
+  top: calc(50% - 15vw / 2);
+}
+
+.header-card-container {
+  min-height: 350px;
+}

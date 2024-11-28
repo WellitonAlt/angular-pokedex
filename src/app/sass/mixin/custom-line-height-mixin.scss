@@ -1,0 +1,11 @@
+@use 'sass:list';
+
+@mixin generateCustomLineHeight($line-heights) {
+  @for $i from 1 to list.length($line-heights) + 1 {
+    $line-height: list.nth($line-heights, $i);
+
+    .line-height-#{$line-height}px {
+      line-height: #{$line-height}px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@use 'colors';
+
+%divider {
+  position: absolute;
+  width: 1px;
+  height: 35%;
+  left: 50%;
+}
+
+.pokemon-header-card {
+  min-height: 350px;
+
+  .divider {
+    position: relative;
+    width: 36px;
+
+    .divider-upper {
+      @extend %divider;
+      top: 0;
+
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, colors.$white 100%);
+    }
+
+    .divider-bottom {
+      @extend %divider;
+      bottom: 0;
+
+      background: linear-gradient(180deg, colors.$white 0%, rgba(255, 255, 255, 0) 100%);
+    }
+  }
+
+  .pokemon-img {
+      width: 330px;
+  }
+}
