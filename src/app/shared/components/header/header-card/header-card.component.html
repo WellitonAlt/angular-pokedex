@@ -1,0 +1,44 @@
+<div class="container pokemon-header-card">
+  <div class="row">
+    <div class="col-6">
+      <div class="mb-2 font-size-24px font-bold">#{{ pokemon().number }}</div>
+      <div class="d-flex gap-2">
+        @for (pokemonType of pokemon().types; track $index) {
+          <app-type-label [typeName]="pokemonType.type.name" />
+        }
+      </div>
+      <div
+        class="font-size-64px font-bold line-height-75px"
+        [innerHtml]="pokemon().name | gender | uppercase | safeHtml"
+      ></div>
+      @if(pokemon().flavorText) {
+        <div class="line-height-34px pokemon-flavor">
+          {{ pokemon().flavorText!.flavor_text }}
+        </div>
+      }
+      <div>
+        <button class="mt-2" type="button">More info</button>
+      </div>
+    </div>
+    <div class="col-1 d-flex justify-content-center">
+      <div class="d-flex justify-content-center flex-column mx-auto gap-2 h-100 divider">
+        <div class="divider-upper"></div>
+        @for (pokemonType of pokemon().types; track $index) {
+          <img
+            class="type-icon"
+            [src]="getTypeIconByName(pokemonType.type.name).src"
+            [alt]="pokemonType.type.name"
+          />
+        }
+        <div class="divider-bottom"></div>
+      </div>
+    </div>
+    <div class="col-5 d-flex justify-content-center">
+      <img
+        class="pokemon-img"
+        [src]="getPokemonImgUrl(pokemon().number)"
+        [alt]="pokemon().name"
+      />
+    </div>
+  </div>
+</div>

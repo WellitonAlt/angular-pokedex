@@ -1,0 +1,10 @@
+<div
+  class="d-flex flex-row justify-content-center align-items-center rounded-2 gap-2 type-icon"
+  [class.only-icon]="onlyIcon()"
+  [style.background]="typeColor"
+>
+  <img [src]="typeIcon.src" [alt]="typeIcon.name" />
+  @if (!onlyIcon) {
+    <span>{{ typeIcon.name }}</span>
+  }
+</div>

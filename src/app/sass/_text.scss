@@ -1,0 +1,45 @@
+@use "mixin/custom-text-size-mixin";
+@use "mixin/custom-line-height-mixin";
+@use "variables/colors";
+
+$font-sizes: 12, 14, 16, 18, 20, 22, 24, 40, 64;
+$line-heights: 34, 75;
+
+//  Color
+
+.font-color-erie-black {
+  color: colors.$erie-black;
+}
+
+.font-color-scorpion-grey {
+  color: colors.$scorpion-grey;
+}
+
+// Color Hover
+
+// Font weight
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-semi-bold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extra-bold {
+  font-weight: 800;
+}
+
+// Opacity
+
+.opacity-05 {
+  opacity: 0.5;
+}
+
+@include custom-text-size-mixin.generateCustomTextSize($font-sizes);
+@include custom-line-height-mixin.generateCustomLineHeight($line-heights);
