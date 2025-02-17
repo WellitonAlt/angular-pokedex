@@ -6,7 +6,7 @@ import { connect } from 'ngxtension/connect';
 import { catchError, EMPTY, Subject, switchMap } from 'rxjs';
 
 import { PokemonService } from '@core/services';
-import { getRadomPokemonNumberByRegion } from '@core/util';
+import { getRandomPokemonNumberByRegion } from '@core/util';
 import { PokemonModel, RegionModel } from '@models';
 
 import { ErrorData } from './error.data';
@@ -97,8 +97,8 @@ export class PokemonDataV2 extends ErrorData {
     this.pokemonNumber$.next(pokemonNumber);
   }
 
-  public getRadomPokemonByRegion(region: RegionModel): void {
-    this.getPokemonByNumber(getRadomPokemonNumberByRegion(region));
+  public getRandomPokemonByRegion(region: RegionModel): void {
+    this.getPokemonByNumber(getRandomPokemonNumberByRegion(region));
   }
 
 }

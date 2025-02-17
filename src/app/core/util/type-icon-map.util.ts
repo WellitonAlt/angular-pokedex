@@ -50,11 +50,11 @@ const typeIconMap: Record<string, TypeIconModel> = {
     name: 'Ghost',
     description: 'ghost',
   },
-  stell: {
+  steel: {
     id: 8,
-    src: './images/type-icon/stell.svg',
-    name: 'Stell',
-    description: 'stell',
+    src: './images/type-icon/steel.svg',
+    name: 'steel',
+    description: 'steel',
   },
   fire: {
     id: 9,
@@ -110,12 +110,6 @@ const typeIconMap: Record<string, TypeIconModel> = {
     name: 'Fairy',
     description: 'fairy',
   },
-  steel: {
-    id: 18,
-    src: './images/type-icon/steel.svg',
-    name: 'Steel',
-    description: 'steel',
-  },
 };
 
 const gradientMap: Record<string, string> = {
@@ -135,7 +129,7 @@ const gradientMap: Record<string, string> = {
   poison: 'poison-gradient',
   psychic: 'psychic-gradient',
   rock: 'rock-gradient',
-  stell: 'stell-gradient',
+  steel: 'steel-gradient',
   water: 'water-gradient',
 };
 

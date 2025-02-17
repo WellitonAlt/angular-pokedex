@@ -30,9 +30,14 @@ export interface EvolutionDetailModel {
   }
   min_level: number;
   min_happiness:	number;
+  known_move: {
+    name: string;
+    url: string;
+  },
   known_move_type: {
     name: string;
   }
+  relative_physical_stats: number,
   time_of_day:	'day' | 'night';
   trigger: {
     name:

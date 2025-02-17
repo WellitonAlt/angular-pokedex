@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-@use 'app/sass/styles.scss';
+/* Importing Bootstrap SCSS file. */
+@use 'bootstrap/scss/bootstrap';
+
+@use 'sass/styles.scss';
 
 body {
   margin: 0;
@@ -9,4 +12,12 @@ body {
   font-weight: 400;
   font-size: 16px;
   color: white;
+}
+
+.icon {
+  width: 45px;
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
 }

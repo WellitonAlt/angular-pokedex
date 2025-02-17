@@ -37,7 +37,9 @@ export interface PokemonDetailEvolutionModel {
   min_level: number;
   min_happiness: number;
   time_of_day: 'day' | 'night';
+  known_move: string;
   known_move_type: string;
+  relative_physical_stats: number;
 }
 
 export interface PokemonSpeciesModel {

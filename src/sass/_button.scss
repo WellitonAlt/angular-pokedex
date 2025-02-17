@@ -1,0 +1,28 @@
+@use "variables/colors";
+
+.btn {
+  padding: 17px 40px;
+  border-radius: 10px;
+  border: 0;
+  background-color: colors.$erie-black;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: colors.$tundora 0px 10px 0px 0px;
+  color: colors.$white;
+  cursor: pointer;
+}
+
+
+.btn:hover {
+  color: colors.$white;
+  box-shadow: colors.$tundora 0px 7px 0px 0px;
+  background-color: colors.$erie-black;
+}
+
+.btn:active {
+  background-color: colors.$erie-black !important;
+  box-shadow: colors.$tundora 0px 0px 0px 0px;
+  transform: translateY(5px);
+  transition: 200ms;
+}

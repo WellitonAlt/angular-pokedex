@@ -1,0 +1,86 @@
+@switch (evolutionDetail().trigger) {
+  @case ("level-up") {
+    <div class="d-flex gap-1">
+      @if (evolutionDetail().min_happiness) {
+        <img
+          class="icon"
+          src="./images/heart.svg"
+          alt="Hapiness"
+        />
+        @if (evolutionDetail().time_of_day === 'day') {
+          <img
+            class="icon"
+            src="./images/sun.svg"
+            alt="Day time"
+          />
+        } @else if (evolutionDetail().time_of_day === 'night') {
+          <img
+            class="icon"
+            src="./images/moon.svg"
+            alt="Day time"
+          />
+        }
+      } @else if (evolutionDetail().known_move_type) {
+        <app-type-label
+          [typeName]="evolutionDetail().known_move_type!"
+          [onlyIcon]="true">
+        </app-type-label>
+        <span class="font-size-12px line-height-25px font-color-erie-black">Move</span>
+      } @else if(evolutionDetail().relative_physical_stats !== null) {
+        <div class="d-flex flex-column align-items-center">
+          <span class="font-size-12px line-height-25px font-color-erie-black">Lv. {{ evolutionDetail().min_level }}</span><br>
+          <span class="font-size-12px line-height-25px font-color-erie-black">
+            Attack
+              {{
+                evolutionDetail().relative_physical_stats! >= 0
+                  ? evolutionDetail().relative_physical_stats! === 0
+                    ? '='
+                    : '>'
+                  : '<'
+              }}
+            Defense
+          </span>
+        </div>
+      } @else if(evolutionDetail().known_move) {
+        <span class="font-size-12px line-height-25px font-color-erie-black">
+          Level up while knowing {{ evolutionDetail().known_move | titlecase }}
+        </span>
+      } @else {
+        <span class="font-size-12px line-height-25px font-color-erie-black">Lv. {{ evolutionDetail().min_level }}</span>
+      }
+    </div>
+  }
+  @case ("use-item") {
+    <img
+      class="icon"
+      [src]="getPokemonItemImgUrl(evolutionDetail().item!)"
+      [alt]="evolutionDetail().item"
+    />
+  }
+  @case ("trade") {
+    <img
+      class="icon"
+      src="./images/trade.svg"
+      alt="trade"
+    />
+    @if(evolutionDetail().item) {
+      <img
+        class="icon"
+        [src]="getPokemonItemImgUrl(evolutionDetail().item!)"
+        [alt]="evolutionDetail().item!"
+      />
+    }
+  }
+  @case ("other") {
+    @if (evolutionDetail().known_move_name) {
+      <span class="font-size-12px font-color-erie-black">
+        Use {{ evolutionDetail().known_move_name }} {{ evolutionDetail().use_move}} times
+      </span>
+    } @else {
+      <span class="font-size-12px font-color-erie-black">Default</span>
+    }
+  }
+  @default {
+    <span class="font-size-12px font-color-erie-black">Default</span>
+  }
+}

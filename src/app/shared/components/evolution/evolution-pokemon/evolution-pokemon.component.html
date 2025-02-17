@@ -1,0 +1,14 @@
+<div class="d-flex flex-column justify-content-between align-items-center">
+  @if (showDetail()) {
+  <app-evolution-detail
+    [details]="pokemon().details!"
+    [id]="pokemon().id"
+  ></app-evolution-detail>
+  }
+  <img
+    class="pixel-img"
+    [class.opacity-05]="hasOpacity()"
+    [src]="getPokemonPixelImgUrl(pokemon().id.toString())"
+    [alt]="pokemon().name"
+  />
+</div>
