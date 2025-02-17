@@ -5,7 +5,11 @@ import { forkJoin, map, mergeMap, Observable, tap } from 'rxjs';
 
 import { POKEMON, POKEMON_EVOLUTION_CHAIN, POKEMON_SPECIES } from '@core/endpoints/pokemon.enpoint';
 import { DEFAULT_LANGUAGE, getGradientByName, pokemonApiUrl } from '@core/util';
-import { getPokemonNumberFromUrl, pokemonEvolutionChainModelToPokemonEvolutionModel } from '@core/util/pokemon.util';
+import {
+  getPokemonNumberFromUrl,
+  pokemonEvolutionChainModelToPokemonEvolutionModel,
+  removePokemonEvolutionFromChain,
+} from '@core/util/pokemon.util';
 import {
   FlavorTextModel,
   PaginationModel,
@@ -65,7 +69,7 @@ export class PokemonService {
 
           return this.getPokemonnEvolutionChain(evolutionChainNumber).pipe(
             map(evolutions => {
-              pokemon.evolutions = evolutions;
+              pokemon.evolutions = removePokemonEvolutionFromChain(evolutions);
 
               return pokemon;
             }),

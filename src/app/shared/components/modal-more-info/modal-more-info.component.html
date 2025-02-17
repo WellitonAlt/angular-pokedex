@@ -1,0 +1,63 @@
+<app-modal [title]="title">
+  <div class="row">
+    <div class="col-8">
+      <div class="row">
+        <div
+          class="col-10 mb-2 font-size-24px font-bold font-color-erie-black"
+          [innerHtml]="pokemon.name | name | uppercase | safeHtml"
+        ></div>
+        <div
+          class="col-2 text-end font-size-24px font-bold font-color-scorpion-grey"
+        >
+          #{{ pokemon.number }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex mb-2 gap-2">
+            @for (pokemonType of pokemon.types; track $index) {
+            <app-type-label [typeName]="pokemonType.type.name" />
+            }
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <app-evolution
+            [evolution]="pokemon.evolutions"
+            [pokemonNumber]="pokemon.id"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex justify-content-around text-center font-color-erie-black custom-border">
+            <div class="">
+              <span class="font-bold">{{ pokemon.weight | hgToKgPipe }} kg </span> <br>
+              <span class="font-color-scorpion-grey">Weight</span>
+            </div>
+            <div class="divider"></div>
+            <div class="">
+              <span class="font-bold">{{ pokemon.height | dmToMPipe }} m </span> <br>
+              <span class="font-color-scorpion-grey">Height</span>
+            </div>
+            <div class="divider"></div>
+            <div>
+                @for (ability of pokemon.abilities; track $index; let last = $last) {
+                  <span class="font-bold">{{ ability.ability.name | titlecase }}  @if(last) { - } </span>
+                }
+               <br>
+              <span class="font-color-scorpion-grey">Ability</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mt-2 font-size-18px font-color-scorpion-grey">
+            {{ pokemon.flavorText?.flavor_text }}
+        </div>
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</app-modal>

@@ -1,0 +1,22 @@
+<div class="d-flex">
+  <div class="d-flex flex-column justify-content-center">
+    <app-evolution-pokemon
+      [pokemon]="evolution()"
+      [hasOpacity]="evolution().id !== pokemonNumber()"
+    ></app-evolution-pokemon>
+  </div>
+
+  @if(evolution().evolutions) {
+    <img
+      class="icon rotate-90"
+      src="./images/arrow.svg"
+      alt="right arrow"
+    />
+
+    <app-evolution-chain
+      class="d-flex flex-wrap gap-3"
+      [chain]="evolution().evolutions!"
+      [pokemonNumber]="pokemonNumber()"
+    ></app-evolution-chain>
+  }
+</div>

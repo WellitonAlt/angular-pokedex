@@ -5,7 +5,7 @@ import { signalSlice } from 'ngxtension/signal-slice';
 import { catchError, EMPTY, map, Observable, switchMap } from 'rxjs';
 
 import { PokemonService } from '@core/services';
-import { getRadomPokemonNumberByRegion, KANTO } from '@core/util';
+import { getRandomPokemonNumberByRegion, KANTO } from '@core/util';
 import { PokemonModel, RegionModel } from '@models';
 
 import { ErrorData } from './error.data';
@@ -29,7 +29,7 @@ export class PokemonDataV3 extends ErrorData {
 
   private readonly initialState: StateModel = {
     pokemon: undefined,
-    pokemonNumber: undefined,
+    pokemonNumber: 1,
     error: undefined,
     loading: true,
   };
@@ -52,15 +52,20 @@ export class PokemonDataV3 extends ErrorData {
     );
   };
 
+  private readonly getNextPokemon = (state: Signal<StateModel>, action$: Observable<void>): Observable<StateModel> =>
+    action$.pipe(
+      switchMap(() => this.getCompletePokemon(state, state().pokemonNumber! + 1)),
+    );
+
   private readonly getPokemonByNumber = (state: Signal<StateModel>, action$: Observable<number>): Observable<StateModel> =>
     action$.pipe(
       switchMap(pokemonNumber => this.getCompletePokemon(state, pokemonNumber)),
     );
 
-  private readonly getRadomPokemonByRegion = (state: Signal<StateModel>, action$: Observable<RegionModel>): Observable<StateModel> =>
+  private readonly getRandomPokemonByRegion = (state: Signal<StateModel>, action$: Observable<RegionModel>): Observable<StateModel> =>
     action$.pipe(
       switchMap(region => {
-        const pokemonNumber = getRadomPokemonNumberByRegion(region);
+        const pokemonNumber = getRandomPokemonNumberByRegion(region);
 
         return this.getCompletePokemon(state, pokemonNumber);
       }),
@@ -72,18 +77,19 @@ export class PokemonDataV3 extends ErrorData {
   public state = signalSlice({
     initialState: this.initialState,
     selectors: (state) => ({
-      loadedAndNoError: (): boolean => !state.loading() && !state.error(),
+      loadedAndWithoutError: (): boolean => !state.loading() && !state.error(),
     }),
     actionSources: {
+      getNextPokemon: this.getNextPokemon,
       getPokemonByNumber: this.getPokemonByNumber,
-      getRadomPokemonByRegion: this.getRadomPokemonByRegion,
+      getRandomPokemonByRegion: this.getRandomPokemonByRegion,
     },
   });
 
   constructor() {
     super();
 
-    this.state.getRadomPokemonByRegion({ name: KANTO });
+    this.state.getRandomPokemonByRegion({ name: KANTO });
   }
 
 }

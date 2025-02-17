@@ -1,0 +1,67 @@
+@if (chain() && chain().length > 0) {
+  @for (evolution of chain(); track $index; let index = $index; let isFirst = $first) {
+    <div>
+      <div class="d-flex">
+          <app-evolution-pokemon
+            [pokemon]="evolution"
+            [hasOpacity]="evolution.id !== pokemonNumber()"
+            [showDetail]="true"
+          ></app-evolution-pokemon>
+      </div>
+    </div>
+
+    @if (evolution.evolutions && evolution.evolutions.length > 0) {
+      <img
+        class="icon rotate-90"
+        src="./images/arrow.svg"
+        alt="right arrow"
+      />
+
+      <app-evolution-chain
+        class="d-flex"
+        [chain]="evolution.evolutions!"
+        [pokemonNumber]="pokemonNumber()"
+      ></app-evolution-chain>
+    }
+  }
+}
+
+
+<!-- @if (chain() && chain().length > 0) {
+<div>
+  <div class="text-center mb-2 font-color-scorpion-grey">{{ stages[currentStage()] }}</div>
+  <div class="d-flex">
+    @for (evolution of chain(); track $index; let index = $index) {
+      <app-evolution-pokemon
+        [pokemon]="evolution"
+        [hasOpacity]="evolution.id === pokemonNumber()"
+        [showDetail]="true"
+      ></app-evolution-pokemon>
+    }
+  </div>
+</div>
+
+
+
+@if (chain() && chain().length > 0) {
+
+  <img
+  class="icon rotate-90"
+  src="./images/arrow.svg"
+  alt="right arrow"
+/>
+  @for (evolution of chain(); track $index; let index = $index) {
+    <app-evolution-chain
+      class="d-flex"
+      [chain]="evolution.evolutions!"
+      [pokemonNumber]="pokemonNumber()"
+      [isFirst]="false"
+      [currentStage]="currentStage() + 1"
+      [index]="index"
+    />
+  }
+  }
+} -->
+
+
+

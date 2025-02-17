@@ -21,4 +21,9 @@ export class HeaderComponent {
 
   public readonly pokemonData = inject(PokemonDataV3);
 
+  public next(): void {
+    console.log('next');
+    this.pokemonData.state.getNextPokemon();
+  }
+
 }

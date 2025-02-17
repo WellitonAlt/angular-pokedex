@@ -1,6 +1,8 @@
 import { PokemonEvolutionsModel } from '@core/models';
 import { EvolvesModel, PokemonEvolutionChainModel } from '@core/models/pokemon-evolution-chain.model';
 
+import { MEOWTH_NUMBER } from './constants.util';
+
 
 const evolvesModelToPokemonEvolutionModel = (evolves: EvolvesModel[]): PokemonEvolutionsModel[] => {
   const evolutions: PokemonEvolutionsModel[] = [];
@@ -22,7 +24,9 @@ const evolvesModelToPokemonEvolutionModel = (evolves: EvolvesModel[]): PokemonEv
         min_level: detail.min_level,
         min_happiness: detail.min_happiness,
         time_of_day: detail.time_of_day,
+        known_move: detail.known_move ? detail.known_move.name : '',
         known_move_type: detail.known_move_type ? detail.known_move_type.name : '',
+        relative_physical_stats: detail.relative_physical_stats,
       }));
     }
 
@@ -57,4 +61,29 @@ export const pokemonEvolutionChainModelToPokemonEvolutionModel = (evolutionChain
   }
 
   return evolution;
+};
+
+export const removePokemonEvolutionFromChain = (pokemonEvolution: PokemonEvolutionsModel): PokemonEvolutionsModel => {
+  if (pokemonEvolution.evolutions) {
+
+    if (pokemonEvolution.id === MEOWTH_NUMBER) {
+      pokemonEvolution.evolutions = [pokemonEvolution.evolutions[0]];
+
+      return pokemonEvolution;
+    }
+
+    if (pokemonEvolution.id === 439) {
+      pokemonEvolution.evolutions[0].evolutions = undefined;
+
+      return pokemonEvolution;
+    }
+
+    if (pokemonEvolution.id === 83) {
+      pokemonEvolution.evolutions = undefined;
+
+      return pokemonEvolution;
+    }
+  }
+
+  return pokemonEvolution;
 };

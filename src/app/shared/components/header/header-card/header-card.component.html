@@ -9,15 +9,15 @@
       </div>
       <div
         class="font-size-64px font-bold line-height-75px"
-        [innerHtml]="pokemon().name | gender | uppercase | safeHtml"
+        [innerHtml]="pokemon().name | name | uppercase | safeHtml"
       ></div>
       @if(pokemon().flavorText) {
         <div class="line-height-34px pokemon-flavor">
           {{ pokemon().flavorText!.flavor_text }}
         </div>
       }
-      <div>
-        <button class="mt-2" type="button">More info</button>
+      <div class="mt-2">
+        <button class="btn" type="button" (click)="openModal()">More info</button>
       </div>
     </div>
     <div class="col-1 d-flex justify-content-center">
